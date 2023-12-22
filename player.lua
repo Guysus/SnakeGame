@@ -1,21 +1,23 @@
 
-
+Player = Entity:extend()
 
 function Player:new(x, y)
-    
+    Player.super.new(self, x, y, "Images/snakehead.png")
 end
 
 function Player:update(dt) 
-  if love.keypressed.isDown("left") then
-      self.x = self.x - 200 * dt
-  elseif love.keypressed.isDown("right") then
-      self.x = self.x + 200 * dt
-  elseif love.keypressed.isDown("up") then
-      self.y = self.y - 200 * dt
-  elseif love.keypressed.isDown("down") then
-      self.y = self.y + 200 * dt
+    Player.super.update(self, dt)
+    
+    if love.keypressed.isDown("left") then
+        self.x = self.x - 200 * dt
+    elseif love.keypressed.isDown("right") then
+        self.x = self.x + 200 * dt
+    elseif love.keypressed.isDown("up") then
+        self.y = self.y - 200 * dt
+    elseif love.keypressed.isDown("down") then
+      self.y = self.y + 200 * dt      
 end
 
 function Player:draw()
-  
+    love.graphics.rectangle("fill", self.x, self.y, 100, 100)
 end
