@@ -6,6 +6,7 @@ function Player:new(x, y)
 end
 
 function Player:update(dt) 
+  
     Player.super.update(self, dt)
     
     if love.keypressed.isDown("left") then
@@ -16,8 +17,4 @@ function Player:update(dt)
         self.y = self.y - 200 * dt
     elseif love.keypressed.isDown("down") then
       self.y = self.y + 200 * dt      
-end
-
-function Player:draw()
-    love.graphics.rectangle("fill", self.x, self.y, 100, 100)
 end

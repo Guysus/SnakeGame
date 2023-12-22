@@ -12,3 +12,12 @@ function Entity:new(x, y, image_path)
   self.last.x = self.x
   self.last.y = self.y
 end
+
+function Entity:update(dt)
+  self.last.x = self.x
+  self.last.y = self.y
+end
+
+function Entity:draw()
+  love.graphics.draw(self.image, self.x, self.y)
+end
