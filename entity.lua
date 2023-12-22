@@ -19,5 +19,5 @@ function Entity:update(dt)
 end
 
 function Entity:draw()
-  love.graphics.draw(self.image, self.x, self.y)
+  love.graphics.draw(self.image, self.x, self.y, 0, 0.04, 0.04)
 end
