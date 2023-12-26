@@ -10,16 +10,34 @@ function love.load()
   
   player = Player(100, 100)
   apple = Apple(200, 200)
+  
+  objects = {}
+  table.insert(objects, player)
+  table.insert(objects, apple)
 end
 
 function love.update(dt)
-  player:update(dt)
-  apple:update(dt)
-  player:resolveCollision(apple)
+  
+    for i,v in ipairs(objects) do
+        v:update(dt)
+    end
+    
+    for i=1,#objects-1 do
+        for j=i+1,#objects do
+            objects[i]:resolveCollision(objects[j])
+        end
+    end
+  --player:update(dt)
+  --apple:update(dt)
+  --player:resolveCollision(apple)
 end
 
 function love.draw()
-  love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
-  player:draw()
-  apple:draw()
+    for i,v in ipairs(objects) do
+        v:draw()
+    end
+    
+    love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
+  --player:draw()
+  --apple:draw()
 end
