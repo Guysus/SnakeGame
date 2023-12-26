@@ -15,6 +15,7 @@ end
 function love.update(dt)
   player:update(dt)
   apple:update(dt)
+  player:resolveCollision(apple)
 end
 
 function love.draw()
