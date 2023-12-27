@@ -25,6 +25,9 @@ function love.update(dt)
         v:update(dt)
     end
     
+    local loop = true
+    local limit = 0
+    
     for i=1,#objects-1 do
         for j=i+1,#objects do
             objects[i]:resolveCollision(objects[j])

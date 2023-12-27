@@ -12,12 +12,14 @@ function Entity:new(x, y, image_path)
   self.last.x = self.x
   self.last.y = self.y
   
-  self.strenght = 0
+  self.strength = 0
+  self.tempStrength = 0
 end
 
 function Entity:update(dt)
   self.last.x = self.x
   self.last.y = self.y
+  self.tempStrength = self.strength
 end
 
 function Entity:draw()
@@ -32,12 +34,12 @@ function Entity:checkCollision(e)
 end
 
 function Entity:resolveCollision(e)
-    if self.strenght > e.strenght then
-        e:resolveCollision(self)
-        return
+    if self.tempStrength > e.tempStrength then
+        return e:resolveCollision(self)
     end
     
     if self:checkCollision(e) then
+        self.tempStrength = e.tempStrength
         if self:wasVerticallyAligned(e) then
             if self.x + self.width/2 < e.x + e.width/2 then
                 local pushback = self.x + self.width - e.x
@@ -55,7 +57,9 @@ function Entity:resolveCollision(e)
                 self.y = self.y + pushback
             end
         end
+        return true
     end
+    return false
 end
 
 function Entity:wasVerticallyAligned(e)
