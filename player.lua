@@ -3,6 +3,7 @@ Player = Entity:extend()
 
 function Player:new(x, y)
     Player.super.new(self, x, y, "Images/snakehead.png")
+    self.strenght = 10
 end
 
 function Player:update(dt) 
