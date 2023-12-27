@@ -5,15 +5,18 @@ function love.load()
   require "entity"
   require "player"
   require "apple"
+  require "wall"
   
   background = love.graphics.newImage("Images/grass.jpg")
   
   player = Player(100, 100)
   apple = Apple(200, 200)
+  wall = Wall(400, 400)
   
   objects = {}
   table.insert(objects, player)
   table.insert(objects, apple)
+  table.insert(objects, wall)
 end
 
 function love.update(dt)

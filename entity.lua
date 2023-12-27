@@ -31,7 +31,16 @@ end
 
 function Entity:resolveCollision(e)
     if self:checkCollision(e) then
-        self.x = self.last.x
-        self.y = self.last.y
+        local pushback = self.x + self.width - e.x
+        self.x = self.x - pushback
     end
 end
+
+function Entity:wasVerticallyAligned(e)
+    return self.last.y < e.last.y + e.height and self.last.y + self.height > e.last.y
+end
+
+function Entity:wasHorizontallyAligned(e)
+    return self.last.x < e.last.x + e.width and self.last.x + self.width > e.last.x
+end
+
