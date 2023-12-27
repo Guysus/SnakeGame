@@ -16,6 +16,9 @@ function love.load()
   table.insert(objects, player)
   table.insert(objects, apple)
   
+  body = {}
+  table.insert(body, player)
+  
   walls = {}
   
   map = {
@@ -49,6 +52,10 @@ function love.update(dt)
     end
     
     for i,v in ipairs(walls) do
+        v:update(dt)
+    end
+    
+    for i,v in ipairs(body) do
         v:update(dt)
     end
     
