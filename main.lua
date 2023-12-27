@@ -50,7 +50,7 @@ function love.update(dt)
         v:update(dt)
     end
     
-     for i,v in ipairs(walls) do
+    for i,v in ipairs(walls) do
         v:update(dt)
     end
     
@@ -89,7 +89,7 @@ function love.draw()
         v:draw()
     end
     
-      for i,v in ipairs(walls) do
+    for i,v in ipairs(walls) do
         v:draw()
     end
     
