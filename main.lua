@@ -12,14 +12,14 @@ function love.load()
   
   player = Player(100, 100)
   apple = Apple(200, 200)
-  body = Body(150, 100)
+  body = Body(50, 100)
   
   objects = {}
   table.insert(objects, player)
   table.insert(objects, apple)
   
-  --body = {}
-  --table.insert(body, player)
+  snake = {}
+  table.insert(snake, body)
   
   walls = {}
   
@@ -57,9 +57,9 @@ function love.update(dt)
         v:update(dt)
     end
     
-    --for i,v in ipairs(body) do
+    for i,v in ipairs(snake) do
         --v:update(dt)
-    --end
+    end
     
     local loop = true
     local limit = 0
@@ -75,8 +75,8 @@ function love.update(dt)
             for j=i+1,#objects do
                 local collision = objects[i]:resolveCollision(objects[j])
                 if collision then
-                    --table.insert(body, player)
-                    loop = true
+                    table.insert(snake, body)
+                    --loop = true
                 end
             end
         end
@@ -101,8 +101,11 @@ function love.draw()
         v:draw()
     end
     
+    for i,v in ipairs(snake) do
+        v:draw()
+    end
+    
     love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
     player:draw()
     apple:draw()
-    body:draw()
 end
