@@ -16,8 +16,8 @@ function love.load()
   table.insert(objects, player)
   table.insert(objects, apple)
   
-  body = {}
-  table.insert(body, player)
+  --body = {}
+  --table.insert(body, player)
   
   walls = {}
   
@@ -73,6 +73,7 @@ function love.update(dt)
             for j=i+1,#objects do
                 local collision = objects[i]:resolveCollision(objects[j])
                 if collision then
+                    --table.insert(body, player)
                     loop = true
                 end
             end
