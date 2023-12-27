@@ -28,14 +28,22 @@ function love.update(dt)
     local loop = true
     local limit = 0
     
-    for i=1,#objects-1 do
-        for j=i+1,#objects do
-            objects[i]:resolveCollision(objects[j])
+    while loop do
+        loop = false
+        
+        limit = limit+1
+        if limit > 100 then
+            break
+        end
+        for i=1,#objects-1 do
+            for j=i+1,#objects do
+                local collision = objects[i]:resolveCollision(objects[j])
+                if collision then
+                    loop = true
+                end
+            end
         end
     end
-  --player:update(dt)
-  --apple:update(dt)
-  --player:resolveCollision(apple)
 end
 
 function love.draw()
@@ -44,6 +52,7 @@ function love.draw()
     end
     
     love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
-  --player:draw()
-  --apple:draw()
+    player:draw()
+    apple:draw()
+    wall:draw()
 end
