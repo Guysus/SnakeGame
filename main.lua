@@ -6,11 +6,13 @@ function love.load()
   require "player"
   require "apple"
   require "wall"
+  require "body"
   
   background = love.graphics.newImage("Images/grass.jpg")
   
   player = Player(100, 100)
   apple = Apple(200, 200)
+  body = Body(150, 100)
   
   objects = {}
   table.insert(objects, player)
@@ -55,9 +57,9 @@ function love.update(dt)
         v:update(dt)
     end
     
-    for i,v in ipairs(body) do
-        v:update(dt)
-    end
+    --for i,v in ipairs(body) do
+        --v:update(dt)
+    --end
     
     local loop = true
     local limit = 0
@@ -102,4 +104,5 @@ function love.draw()
     love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
     player:draw()
     apple:draw()
+    body:draw()
 end
