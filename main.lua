@@ -11,12 +11,12 @@ function love.load()
   
   player = Player(100, 100)
   apple = Apple(200, 200)
-  --wall = Wall
+  
   
   objects = {}
   table.insert(objects, player)
   table.insert(objects, apple)
-  --table.insert(objects, wall)
+  
   
   walls = {}
   
