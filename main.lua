@@ -75,7 +75,8 @@ function love.update(dt)
                 local collision = objects[i]:resolveCollision(objects[j])
                 if collision then
                     loop = true
-                    table.remove(apples, i)
+                    table.remove(objects, j)
+                    table.insert(objects, apple)
                 end
             end
         end
