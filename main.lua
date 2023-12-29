@@ -10,8 +10,20 @@ function love.load()
   background = love.graphics.newImage("Images/grass.jpg")
   
   player = Player(100, 100)
-  apple = Apple(200, 200)
+  apple = Apple()
   
+  apples = {}
+  
+  for i=1,25 do
+      table.insert(apples,
+          {
+              x = math.random(50, 650),
+              y = math.random(50, 450),
+              size = 10,
+              image = love.graphics.newImage("Images/apple.png")
+          }
+      )
+  end
   
   objects = {}
   table.insert(objects, player)
@@ -96,5 +108,5 @@ function love.draw()
     love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
     player:draw()
     apple:draw()
-    --wall:draw()
+    
 end
