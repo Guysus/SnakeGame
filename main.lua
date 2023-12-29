@@ -56,6 +56,10 @@ function love.update(dt)
         v:update(dt)
     end
     
+    for i,v in ipairs(apples) do
+        v:update(dt)
+    end
+    
     local loop = true
     local limit = 0
     
@@ -71,6 +75,7 @@ function love.update(dt)
                 local collision = objects[i]:resolveCollision(objects[j])
                 if collision then
                     loop = true
+                    table.remove(apples, i)
                 end
             end
         end
@@ -101,6 +106,10 @@ function love.draw()
     end
     
     for i,v in ipairs(walls) do
+        v:draw()
+    end
+    
+    for i,v in ipairs(apples) do
         v:draw()
     end
     
