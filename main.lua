@@ -13,7 +13,7 @@ function love.load()
   apple = Apple()
   
   apples = {}
-  table.insert(apples, apple)
+  --table.insert(apples, apple)
   
   objects = {}
   table.insert(objects, player)
@@ -76,8 +76,9 @@ function love.update(dt)
                 if collision then
                     loop = true
                     table.remove(objects, j)
-                    table.insert(objects, apple)
+                    --table.insert(objects, apple)
                 end
+                
             end
         end
         
@@ -89,21 +90,12 @@ function love.update(dt)
                 end
             end
         end
-        
-        for i,apple in ipairs(apples) do
-            for j, object in ipairs(objects) do
-                local collision = object:resolveCollision(apple)
-                if collision then
-                    table.remove(apples, i)
-                end
-            end
-        end
     end
 end
 
 function love.draw()
     for i,v in ipairs(objects) do
-        v:draw()
+        --v:draw()
     end
     
     for i,v in ipairs(walls) do
@@ -115,7 +107,7 @@ function love.draw()
     end
     
     love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
-    player:draw()
+    --player:draw()
     apple:draw()
     
 end
