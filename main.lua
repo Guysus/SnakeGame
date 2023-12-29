@@ -13,17 +13,18 @@ function love.load()
   apple = Apple()
   
   apples = {}
+  table.insert(apples, apple)
   
-  for i=1,25 do
-      table.insert(apples,
-          {
-              x = math.random(50, 650),
-              y = math.random(50, 450),
-              size = 10,
-              image = love.graphics.newImage("Images/apple.png")
-          }
-      )
-  end
+  --for i=1,25 do
+      --table.insert(apples,
+          --{
+              --x = math.random(50, 650),
+              --y = math.random(50, 450),
+              --size = 10,
+             -- image = love.graphics.newImage("Images/apple.png")
+          --}
+     -- )
+  --end
   
   objects = {}
   table.insert(objects, player)
@@ -93,6 +94,15 @@ function love.update(dt)
                 end
             end
         end
+        
+        for i,apple in ipairs(apples) do
+            for j, object in ipairs(objects) do
+                local collision = object:resolveCollision(apple)
+                if collision then
+                    table.remove(apples, i)
+                end
+            end
+        end
     end
 end
 
@@ -104,6 +114,10 @@ function love.draw()
     for i,v in ipairs(walls) do
         v:draw()
     end
+    
+    --for i,v in ipairs(apples) do
+        --love.graphics.draw(v.image, v.x, v.y, 0, 1, 1, v.image:getWidth()/2, v.image:getHeight()/2)
+    --end
     
     love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
     player:draw()

@@ -70,3 +70,7 @@ function Entity:wasHorizontallyAligned(e)
     return self.last.x < e.last.x + e.width and self.last.x + self.width > e.last.x
 end
 
+function Entity:appleCollision(p1, p2)
+    local distance = math.sqrt((p1.x - p2.x)^2 + (p1.y - p2.y)^2)
+    return distance < p1.size + p2.size
+end
