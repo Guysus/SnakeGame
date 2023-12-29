@@ -15,17 +15,6 @@ function love.load()
   apples = {}
   table.insert(apples, apple)
   
-  --for i=1,25 do
-      --table.insert(apples,
-          --{
-              --x = math.random(50, 650),
-              --y = math.random(50, 450),
-              --size = 10,
-             -- image = love.graphics.newImage("Images/apple.png")
-          --}
-     -- )
-  --end
-  
   objects = {}
   table.insert(objects, player)
   table.insert(objects, apple)
@@ -114,10 +103,6 @@ function love.draw()
     for i,v in ipairs(walls) do
         v:draw()
     end
-    
-    --for i,v in ipairs(apples) do
-        --love.graphics.draw(v.image, v.x, v.y, 0, 1, 1, v.image:getWidth()/2, v.image:getHeight()/2)
-    --end
     
     love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
     player:draw()
