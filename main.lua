@@ -9,12 +9,9 @@ function love.load()
   
   background = love.graphics.newImage("Images/grass.jpg")
   
-  player = Player(500, 500)
+  player = Player(100, 100)
   apple = Apple()
-  
-  apples = {}
-  --table.insert(apples, apple)
-  
+
   objects = {}
   table.insert(objects, player)
   table.insert(objects, apple)
@@ -57,10 +54,6 @@ function love.update(dt)
         v:update(dt)
     end
     
-    for i,v in ipairs(apples) do
-        v:update(dt)
-    end
-    
     local loop = true
     local limit = 0
     
@@ -77,9 +70,6 @@ function love.update(dt)
                     loop = true
                     objects[2].x = math.random(50, 650)
                     objects[2].y = math.random(50, 450)
-                    
-                    --table.remove(objects, 2)
-                    --table.insert(objects, apple)
                 end
         --for i=1,#objects-1 do
             --for j=i+1,#objects do
@@ -111,10 +101,6 @@ function love.draw()
     for i,v in ipairs(walls) do
         v:draw()
     end
-    
-    --for i,v in ipairs(apples) do
-        --v:draw()
-    --end
     
     love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
     player:draw()
