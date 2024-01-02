@@ -9,7 +9,7 @@ function love.load()
   
   background = love.graphics.newImage("Images/grass.jpg")
   
-  player = Player(100, 100)
+  player = Player(500, 500)
   apple = Apple()
   
   apples = {}
@@ -41,6 +41,7 @@ function love.load()
         for j,w in ipairs(v) do
             if w == 1 then
                 table.insert(walls, Wall((j-1)*50, (i-1)*50))
+                
             end
         end
     end
@@ -70,16 +71,26 @@ function love.update(dt)
         if limit > 100 then
             break
         end
-        for i=1,#objects-1 do
-            for j=i+1,#objects do
-                local collision = objects[i]:resolveCollision(objects[j])
-                if collision then
+        
+        local collision = objects[1]:resolveCollision(objects[2])
+        if collision then
                     loop = true
-                    table.remove(objects, j)
-                    table.insert(objects, apple)
+                    objects[2].x = math.random(50, 650)
+                    objects[2].y = math.random(50, 450)
+                    
+                    --table.remove(objects, 2)
+                    --table.insert(objects, apple)
                 end
-            end
-        end
+        --for i=1,#objects-1 do
+            --for j=i+1,#objects do
+               -- local collision = objects[i]:resolveCollision(objects[j])
+                --if collision then
+                    --loop = true
+                    --table.remove(objects, j)
+                    --table.insert(objects, apple)
+                --end
+            --end
+        --end
         
         for i,wall in ipairs(walls) do
             for j,object in ipairs(objects) do
@@ -93,17 +104,17 @@ function love.update(dt)
 end
 
 function love.draw()
-    for i,v in ipairs(objects) do
-        v:draw()
-    end
+    --for i,v in ipairs(objects) do
+        --v:draw()
+    --end
     
     for i,v in ipairs(walls) do
         v:draw()
     end
     
-    for i,v in ipairs(apples) do
-        v:draw()
-    end
+    --for i,v in ipairs(apples) do
+        --v:draw()
+    --end
     
     love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
     player:draw()
