@@ -6,15 +6,18 @@ function love.load()
   require "player"
   require "apple"
   require "wall"
+  require "body"
   
   background = love.graphics.newImage("Images/grass.jpg")
   
   player = Player(100, 100)
   apple = Apple()
+  body = Body()
 
   objects = {}
   table.insert(objects, player)
   table.insert(objects, apple)
+  --table.insert(objects, body)
   
   
   walls = {}
@@ -38,7 +41,6 @@ function love.load()
         for j,w in ipairs(v) do
             if w == 1 then
                 table.insert(walls, Wall((j-1)*50, (i-1)*50))
-                
             end
         end
     end
@@ -67,10 +69,11 @@ function love.update(dt)
         
         local collision = objects[1]:resolveCollision(objects[2])
         if collision then
-                    loop = true
-                    objects[2].x = math.random(50, 650)
-                    objects[2].y = math.random(50, 450)
-                end
+            loop = true
+            objects[2].x = math.random(50, 650)
+            objects[2].y = math.random(50, 450)
+            table.insert(objects, body)
+        end
         --for i=1,#objects-1 do
             --for j=i+1,#objects do
                -- local collision = objects[i]:resolveCollision(objects[j])
@@ -94,9 +97,9 @@ function love.update(dt)
 end
 
 function love.draw()
-    --for i,v in ipairs(objects) do
-        --v:draw()
-    --end
+    for i,v in ipairs(objects) do
+        v:draw()
+    end
     
     for i,v in ipairs(walls) do
         v:draw()
