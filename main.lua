@@ -12,6 +12,7 @@ function love.load()
   
   player = Player(100, 100)
   apple = Apple()
+  wall = Wall()
   body = Body()
 
   objects = {}
@@ -73,6 +74,8 @@ function love.update(dt)
             objects[2].x = math.random(50, 650)
             objects[2].y = math.random(50, 450)
             table.insert(objects, body)
+            objects[3].x = 100
+            objects[3].y = 100
         end
         --for i=1,#objects-1 do
             --for j=i+1,#objects do
@@ -105,8 +108,15 @@ function love.draw()
         v:draw()
     end
     
+    for i,v in ipairs(map) do
+        for j,w in ipairs(v) do
+            if w == 1 then
+                wall:draw()
+            end
+        end
+    end
+    
     love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
     player:draw()
     apple:draw()
-    
 end
