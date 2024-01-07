@@ -34,9 +34,9 @@ function Entity:checkCollision(e)
 end
 
 function Entity:resolveCollision(e)
-    if self.tempStrength > e.tempStrength then
-        return e:resolveCollision(self)
-    end
+    --if self.tempStrength > e.tempStrength then
+        --return e:resolveCollision(self)
+    --end
     
     if self:checkCollision(e) then
         self.tempStrength = e.tempStrength

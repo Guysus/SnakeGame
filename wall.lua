@@ -6,3 +6,7 @@ function Wall:new(x, y)
     self.strength = 100
     self.tempStrength = self.strength
 end
+
+function Wall:update(dt)
+    Wall.super.update(self, dt)
+end

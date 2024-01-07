@@ -11,15 +11,15 @@ function love.load()
   background = love.graphics.newImage("Images/grass.jpg")
   
   player = Player(100, 100)
-  apple = Apple(200, 200)
-  body = Body(50, 100)
-  
+  apple = Apple()
+  wall = Wall()
+  body = Body()
+
   objects = {}
   table.insert(objects, player)
   table.insert(objects, apple)
+  --table.insert(objects, body)
   
-  snake = {}
-  table.insert(snake, body)
   
   walls = {}
   
@@ -57,10 +57,6 @@ function love.update(dt)
         v:update(dt)
     end
     
-    for i,v in ipairs(snake) do
-        --v:update(dt)
-    end
-    
     local loop = true
     local limit = 0
     
@@ -71,15 +67,23 @@ function love.update(dt)
         if limit > 100 then
             break
         end
-        for i=1,#objects-1 do
-            for j=i+1,#objects do
-                local collision = objects[i]:resolveCollision(objects[j])
-                if collision then
-                    table.insert(snake, body)
-                    --loop = true
-                end
-            end
+        
+        local collision = objects[1]:resolveCollision(objects[2])
+        if collision then
+            loop = true
+            objects[2].x = math.random(50, 650)
+            objects[2].y = math.random(50, 450)
         end
+        --for i=1,#objects-1 do
+            --for j=i+1,#objects do
+               -- local collision = objects[i]:resolveCollision(objects[j])
+                --if collision then
+                    --loop = true
+                    --table.remove(objects, j)
+                    --table.insert(objects, apple)
+                --end
+            --end
+        --end
         
         for i,wall in ipairs(walls) do
             for j,object in ipairs(objects) do
@@ -88,7 +92,7 @@ function love.update(dt)
                     loop = true
                 end
             end
-        end  
+        end
     end
 end
 
@@ -101,9 +105,6 @@ function love.draw()
         v:draw()
     end
     
-    for i,v in ipairs(snake) do
-        v:draw()
-    end
     
     love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
     player:draw()
