@@ -105,7 +105,6 @@ function love.draw()
         v:draw()
     end
     
-    
     love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
     player:draw()
     apple:draw()
