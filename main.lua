@@ -18,8 +18,8 @@ function love.load()
   objects = {}
   table.insert(objects, player)
   table.insert(objects, apple)
-  --table.insert(objects, body)
   
+  score = 0
   
   walls = {}
   
@@ -104,6 +104,8 @@ function love.draw()
     for i,v in ipairs(walls) do
         v:draw()
     end
+    
+    love.graphics.print(score, 10, 10)
     
     love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
     player:draw()
