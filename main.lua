@@ -19,6 +19,7 @@ function love.load()
   table.insert(objects, player)
   table.insert(objects, apple)
   
+  highScore = love.graphics.newImage("Images/score.png")
   score = 0
   
   walls = {}
@@ -109,7 +110,6 @@ function love.draw()
         v:draw()
     end
     
-    love.graphics.print(score, 50, 50)
-    player:draw()
-    apple:draw()
+    love.graphics.draw(highScore, 0, -55, 0, 0.3, 0.3)
+    love.graphics.print(score, 50, 45, 0, 3, 3)
 end
