@@ -18,8 +18,8 @@ function love.load()
   objects = {}
   table.insert(objects, player)
   table.insert(objects, apple)
-  --table.insert(objects, body)
   
+  score = 0
   
   walls = {}
   
@@ -73,6 +73,7 @@ function love.update(dt)
             loop = true
             objects[2].x = math.random(50, 650)
             objects[2].y = math.random(50, 450)
+            score = score + 1
         end
         --for i=1,#objects-1 do
             --for j=i+1,#objects do
@@ -97,6 +98,9 @@ function love.update(dt)
 end
 
 function love.draw()
+  
+    love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
+  
     for i,v in ipairs(objects) do
         v:draw()
     end
@@ -105,8 +109,7 @@ function love.draw()
         v:draw()
     end
     
-    
-    love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
+    love.graphics.print(score, 50, 50)
     player:draw()
     apple:draw()
 end
