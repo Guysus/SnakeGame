@@ -69,29 +69,32 @@ function love.update(dt)
             break
         end
         
-        --local collision = objects[1]:resolveCollision(objects[2])
-        --if collision then
-            --loop = true
-            --objects[2].x = math.random(50, 650)
-            --objects[2].y = math.random(50, 450)
-            --score = score + 1
-            --table.insert(objects, body)
-            --objects[3].x = player.x
-            --objects[3].y = player.y
-        --end
-        
-        for i=1,#objects-1 do
-            for j=i+1,#objects do
-                local collision = objects[i]:resolveCollision(objects[j])
-                if collision then
-                    loop = true
-                    objects[2].x = math.random(50, 650)
-                    objects[2].y = math.random(50, 450)
-                    score = score + 1
-                    --table.insert(objects, player)
-                end
-            end
+        local collision = objects[1]:resolveCollision(objects[2])
+        if collision then
+            loop = true
+            objects[2].x = math.random(50, 650)
+            objects[2].y = math.random(50, 450)
+            score = score + 1
+            table.insert(objects, body)
+            objects[3].x = player.x + 25
+            objects[3].y = player.y + 25
+        --local death = objects[1]:resolveCollision(objects[3])
+        --if death then
+            
         end
+        
+        --for i=1,#objects-1 do
+            --for j=i+1,#objects do
+                --local collision = objects[i]:resolveCollision(objects[j])
+                --if collision then
+                    --loop = true
+                    --objects[2].x = math.random(50, 650)
+                    --objects[2].y = math.random(50, 450)
+                    --score = score + 1
+                    --table.insert(objects, body)
+                --end
+            --end
+        --end
         
         for i,wall in ipairs(walls) do
             for j,object in ipairs(objects) do
