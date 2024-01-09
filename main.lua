@@ -19,6 +19,7 @@ function love.load()
   table.insert(objects, player)
   table.insert(objects, apple)
   
+  highScore = love.graphics.newImage("Images/score.png")
   score = 0
   
   walls = {}
@@ -74,14 +75,23 @@ function love.update(dt)
             objects[2].x = math.random(50, 650)
             objects[2].y = math.random(50, 450)
             score = score + 1
+            table.insert(objects, body)
+            objects[3].x = player.x + 25
+            objects[3].y = player.y + 25
+        --local death = objects[1]:resolveCollision(objects[3])
+        --if death then
+            
         end
+        
         --for i=1,#objects-1 do
             --for j=i+1,#objects do
-               -- local collision = objects[i]:resolveCollision(objects[j])
+                --local collision = objects[i]:resolveCollision(objects[j])
                 --if collision then
                     --loop = true
-                    --table.remove(objects, j)
-                    --table.insert(objects, apple)
+                    --objects[2].x = math.random(50, 650)
+                    --objects[2].y = math.random(50, 450)
+                    --score = score + 1
+                    --table.insert(objects, body)
                 --end
             --end
         --end
@@ -109,7 +119,6 @@ function love.draw()
         v:draw()
     end
     
-    love.graphics.print(score, 50, 50)
-    player:draw()
-    apple:draw()
+    love.graphics.draw(highScore, 0, -55, 0, 0.3, 0.3)
+    love.graphics.print(score, 50, 45, 0, 3, 3)
 end
