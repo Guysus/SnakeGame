@@ -73,6 +73,7 @@ function love.update(dt)
             loop = true
             objects[2].x = math.random(50, 650)
             objects[2].y = math.random(50, 450)
+            score = score + 1
         end
         --for i=1,#objects-1 do
             --for j=i+1,#objects do
@@ -105,7 +106,7 @@ function love.draw()
         v:draw()
     end
     
-    love.graphics.print(score, 10, 10)
+    love.graphics.print(score, 50, 50)
     
     love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
     player:draw()
