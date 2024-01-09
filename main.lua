@@ -98,6 +98,9 @@ function love.update(dt)
 end
 
 function love.draw()
+  
+    love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
+  
     for i,v in ipairs(objects) do
         v:draw()
     end
@@ -107,8 +110,6 @@ function love.draw()
     end
     
     love.graphics.print(score, 50, 50)
-    
-    love.graphics.draw(background, 0, 0, 0, 1.35, 1.67)
     player:draw()
     apple:draw()
 end
