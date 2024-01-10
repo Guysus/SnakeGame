@@ -19,6 +19,9 @@ function love.load()
   table.insert(objects, player)
   table.insert(objects, apple)
   
+  tailLenght = 0
+  tail = {}
+  
   highScore = love.graphics.newImage("Images/score.png")
   score = 0
   
@@ -75,12 +78,9 @@ function love.update(dt)
             objects[2].x = math.random(50, 650)
             objects[2].y = math.random(50, 450)
             score = score + 1
-            table.insert(objects, body)
-            objects[3].x = player.x + 25
-            objects[3].y = player.y + 25
-        --local death = objects[1]:resolveCollision(objects[3])
-        --if death then
-            
+            --table.insert(objects, body)
+            --objects[3].x = player.x + 25
+            --objects[3].y = player.y + 25
         end
         
         --for i=1,#objects-1 do
