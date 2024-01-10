@@ -9,6 +9,8 @@ function love.load()
   require "body"
   
   background = love.graphics.newImage("Images/grass.jpg")
+  oldX = player.x
+  oldY = player.y
   
   player = Player(100, 100)
   apple = Apple()
@@ -78,6 +80,7 @@ function love.update(dt)
             objects[2].x = math.random(50, 650)
             objects[2].y = math.random(50, 450)
             score = score + 1
+            tailLenght = tailLenght +1
             --table.insert(objects, body)
             --objects[3].x = player.x + 25
             --objects[3].y = player.y + 25
@@ -119,6 +122,10 @@ function love.draw()
         v:draw()
     end
     
+    for _,v in ipairs(tail) do
+        body:draw()
+    end
+      
     love.graphics.draw(highScore, 0, -55, 0, 0.3, 0.3)
     love.graphics.print(score, 50, 45, 0, 3, 3)
 end
