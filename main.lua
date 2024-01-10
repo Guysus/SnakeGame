@@ -122,3 +122,9 @@ function love.draw()
     love.graphics.draw(highScore, 0, -55, 0, 0.3, 0.3)
     love.graphics.print(score, 50, 45, 0, 3, 3)
 end
+
+function love.keypressed(key)
+    if key == 'escape' then
+        love.event.quit()
+    end
+end
