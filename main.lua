@@ -53,9 +53,6 @@ function love.load()
 end
 
 function love.update(dt)
-  
-    local oldX = player.x
-    local oldY = player.y
     
     for i,v in ipairs(objects) do
         v:update(dt)
@@ -65,6 +62,8 @@ function love.update(dt)
         v:update(dt)
     end
     
+    local oldX = player.x
+    local oldY = player.y
     local loop = true
     local limit = 0
     
