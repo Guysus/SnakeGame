@@ -19,6 +19,7 @@ function love.load()
   objects = {}
   table.insert(objects, player)
   table.insert(objects, apple)
+  --table.insert(objects, body)
   
   tailLenght = 0
   tail = {}
@@ -62,6 +63,10 @@ function love.update(dt)
         v:update(dt)
     end
     
+    for i,v in ipairs(tail) do
+        v:update(dt)
+    end
+    
     local oldX = player.x
     local oldY = player.y
     local loop = true
@@ -81,17 +86,25 @@ function love.update(dt)
             objects[2].x = math.random(50, 650)
             objects[2].y = math.random(50, 450)
             score = score + 1
-            tailLenght = tailLenght +1
-            table.insert(tail, {0,0})
+            tailLenght = tailLenght + 1
+            table.insert(tail, body)
         end
         
-        if tailLenght > 0 then
+        if tailLenght == 1 then
             for i,v in ipairs(tail) do
-                local x, y = v[1], v[2]
-                v[1], v[2] = oldX, oldY
-                oldX, oldY = x, y
+                v.x = oldX 
+                v.y = oldY 
+                --local x, y = v[1], v[2]
+                --v[1], v[2] = oldX, oldY
+                --oldX, oldY = x, y
             end
+        end  
+        
+        if tailLenght > 1 then
+            tail[tailLenght].x = tail[tailLenght - 1].x
+            tail[tailLenght].y = tail[tailLenght - 1].y
         end
+        
         
         --for i=1,#objects-1 do
             --for j=i+1,#objects do
@@ -130,8 +143,9 @@ function love.draw()
     end
     
     for i,v in ipairs(tail) do
+        v:draw()
         --love.graphics.setColor(0.1, 1, 0, 1.0)
-        love.graphics.circle('fill', v[1]*SIZE, v[2]*SIZE, SIZE, SIZE, 15, 15) 
+        --love.graphics.circle('fill', v[1]*SIZE, v[2]*SIZE, SIZE, SIZE, 15, 15) 
     end
       
     love.graphics.draw(highScore, 0, -55, 0, 0.3, 0.3)
