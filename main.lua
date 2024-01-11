@@ -86,7 +86,7 @@ function love.update(dt)
         end
         
         if tailLenght > 0 then
-            for _,v in ipairs(tail) do
+            for i,v in ipairs(tail) do
                 local x, y = v[1], v[2]
                 v[1], v[2] = oldX, oldY
                 oldX, oldY = x, y
@@ -129,7 +129,7 @@ function love.draw()
         v:draw()
     end
     
-    for _,v in ipairs(tail) do
+    for i,v in ipairs(tail) do
         --love.graphics.setColor(0.1, 1, 0, 1.0)
         love.graphics.circle('fill', v[1]*SIZE, v[2]*SIZE, SIZE, SIZE, 15, 15) 
     end
