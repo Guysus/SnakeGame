@@ -147,8 +147,6 @@ function love.draw()
     
     for i,v in ipairs(tail) do
         v:draw()
-        --love.graphics.setColor(0.1, 1, 0, 1.0)
-        --love.graphics.circle('fill', v[1]*SIZE, v[2]*SIZE, SIZE, SIZE, 15, 15) 
     end
       
     love.graphics.draw(highScore, 0, -55, 0, 0.3, 0.3)
