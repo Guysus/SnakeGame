@@ -90,20 +90,23 @@ function love.update(dt)
             table.insert(tail, body)
         end
         
-        if tailLenght == 1 then
+        if tailLenght > 0 then
             for i,v in ipairs(tail) do
-                v.x = oldX 
-                v.y = oldY 
+                v.x = oldX - 50
+                v.y = oldY
                 --local x, y = v[1], v[2]
                 --v[1], v[2] = oldX, oldY
                 --oldX, oldY = x, y
             end
         end  
         
-        if tailLenght > 1 then
-            tail[tailLenght].x = tail[tailLenght - 1].x
-            tail[tailLenght].y = tail[tailLenght - 1].y
-        end
+        --if tailLenght > 1 then
+          --for i,v in ipairs(tail) do
+              --table.insert(tail, body)
+              --tail[tailLenght].x = tail[tailLenght - 1].x - 50
+              --tail[tailLenght].y = tail[tailLenght - 1].y
+          --end
+        --end
         
         
         --for i=1,#objects-1 do
