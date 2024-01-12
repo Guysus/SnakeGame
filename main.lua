@@ -19,7 +19,6 @@ function love.load()
   objects = {}
   table.insert(objects, player)
   table.insert(objects, apple)
-  --table.insert(objects, body)
   
   tailLenght = 0
   tail = {}
@@ -94,9 +93,6 @@ function love.update(dt)
             for i,v in ipairs(tail) do
                 v.x = oldX - 50
                 v.y = oldY
-                --local x, y = v[1], v[2]
-                --v[1], v[2] = oldX, oldY
-                --oldX, oldY = x, y
             end
         end  
         
